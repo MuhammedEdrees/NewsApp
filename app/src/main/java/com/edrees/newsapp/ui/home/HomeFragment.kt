@@ -1,13 +1,20 @@
 package com.edrees.newsapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.edrees.newsapp.databinding.FragmentHomeBinding
+import com.edrees.newsapp.db.NewsDatabase
+import com.edrees.newsapp.local.LocalSourceImpl
+import com.edrees.newsapp.network.APIClient
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
