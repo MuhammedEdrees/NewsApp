@@ -1,4 +1,4 @@
-1. Splash Screen:
+1. Splash Screen:✔✔✔✔✔✔
    - Display a splash screen with your app logo while the app is loading.
 
 3. Navigation Drawer:
