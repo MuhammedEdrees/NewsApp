@@ -1,7 +1,7 @@
-1. Splash Screen:✔✔✔✔✔✔
+1. Splash Screen: ✔✔✔✔✔✔
    - Display a splash screen with your app logo while the app is loading.
 
-3. Navigation Drawer:
+3. Navigation Drawer: ✔✔✔✔✔✔
    - Create a navigation drawer with the following menu items:
      - Home: Displays the main news feed.
      - Categories: Shows a list of news categories (e.g., business, sports, technology).
