@@ -38,6 +38,6 @@
         tools:layout="@layout/fragment_details" >
         <argument
             android:name="article"
-            app:argType="com.edrees.newsapp.model.Article" />
+            app:argType="com.edrees.newsapp.model.Article"/>
     </fragment>
 </navigation>

@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.edrees.newsapp.databinding.HomeListItemBinding
 import com.edrees.newsapp.model.Article
 
@@ -32,5 +33,10 @@ class HomeAdapter(private val homeCallback: HomeCallback) : RecyclerView.Adapter
                 }
             }
         }
+    }
+    fun setData(newData: List<Article>){
+        data.clear()
+        data.addAll(newData)
+        notifyDataSetChanged()
     }
 }
