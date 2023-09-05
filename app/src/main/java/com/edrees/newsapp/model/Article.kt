@@ -3,6 +3,7 @@ package com.edrees.newsapp.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity("articles")
 data class Article(
@@ -14,4 +15,4 @@ data class Article(
     val title: String,
     @PrimaryKey val url: String,
     @ColumnInfo(name="url_to_image")val urlToImage: String
-)
+): Serializable

@@ -36,12 +36,12 @@
 9. Settings Fragment:
    - Allow users to customize app settings, such as theme selection, and language preferences.
 
-10. Retrofit Integration:
+10. Retrofit Integration: ✔✔✔✔✔✔
     - Implement Retrofit to handle API requests to the NewsAPI.org endpoints.
     - Create a service interface that defines the necessary API endpoints and request methods.
     - Use Retrofit to retrieve news articles and related data from the API.
 
-11. Room Integration:
+11. Room Integration: ✔✔✔✔✔✔
     - Set up a Room database to cache news articles locally.
     - Create entities and DAOs to store and retrieve articles from the local database.
     - Use Room to store and retrieve favorite articles.
