@@ -13,6 +13,13 @@ class ArticleRepositoryImpl(
         return remoteSource.getTopHeadlinesByCountry(country, apiKey)
     }
 
+    override suspend fun getTopHeadlinesByCategory(
+        category: String,
+        apiKey: String
+    ): ArticleResponse {
+        return remoteSource.getTopHeadlinesByCategory(category, apiKey)
+    }
+
     override suspend fun insertArticle(vararg articles: Article) {
         localSource.insertArticle(*articles)
     }

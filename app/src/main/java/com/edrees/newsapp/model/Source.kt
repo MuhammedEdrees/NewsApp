@@ -1,8 +1,11 @@
 package com.edrees.newsapp.model
 
-import java.io.Serializable
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+
+@Parcelize
 data class Source(
-    val id: String,
-    val name: String
-): Serializable
+    val id: String?,
+    val name: String?
+): Parcelable

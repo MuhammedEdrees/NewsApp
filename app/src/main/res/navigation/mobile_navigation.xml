@@ -19,7 +19,11 @@
         android:id="@+id/nav_categories"
         android:name="com.edrees.newsapp.ui.categories.CategoriesFragment"
         android:label="@string/menu_categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories" >
+        <action
+            android:id="@+id/action_nav_categories_to_categorizedNewsFragment"
+            app:destination="@id/categorizedNewsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_search"
@@ -39,5 +43,17 @@
         <argument
             android:name="article"
             app:argType="com.edrees.newsapp.model.Article"/>
+    </fragment>
+    <fragment
+        android:id="@+id/categorizedNewsFragment"
+        android:name="com.edrees.newsapp.ui.categories.categorized_news.CategorizedNewsFragment"
+        android:label="fragment_categorized_news"
+        tools:layout="@layout/fragment_categorized_news" >
+        <argument
+            android:name="category"
+            app:argType="com.edrees.newsapp.model.Category" />
+        <action
+            android:id="@+id/action_categorizedNewsFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
     </fragment>
 </navigation>

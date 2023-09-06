@@ -8,4 +8,9 @@ object APIClient: ArticleRemoteDataSource {
         country: String,
         apiKey: String
     ) = BaseRetrofitHelper.retrofit.create(ArticleService::class.java).getTopHeadlinesByCountry(country, apiKey)
+
+    override suspend fun getTopHeadlinesByCategory(
+        category: String,
+        apiKey: String
+    ) = BaseRetrofitHelper.retrofit.create(ArticleService::class.java).getTopHeadlinesByCategory(category, apiKey)
 }

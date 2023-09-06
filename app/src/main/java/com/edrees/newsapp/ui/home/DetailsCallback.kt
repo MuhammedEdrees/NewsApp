@@ -2,6 +2,6 @@ package com.edrees.newsapp.ui.home
 
 import com.edrees.newsapp.model.Article
 
-interface HomeCallback {
+interface DetailsCallback {
     fun navigateToDetails(article: Article)
 }
