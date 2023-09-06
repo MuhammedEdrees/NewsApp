@@ -9,12 +9,12 @@
      - Favorites: Displays a list of articles that users have bookmarked.
      - Settings: Provides options to customize app settings.
 
-4. Home Fragment:
+4. Home Fragment: ✔✔✔✔✔✔
    - Show a list of the latest news articles from various sources.
    - Each news article should display the title, source, published date, and thumbnail image (if available).
    - Clicking on an article should open a detailed view of the article.
 
-5. Categories Fragment:
+5. Categories Fragment: ✔✔✔✔✔✔
    - Display a list of news categories.
    - When a category is selected, show a list of news articles related to that category.
 
@@ -36,22 +36,22 @@
 9. Settings Fragment:
    - Allow users to customize app settings, such as theme selection, and language preferences.
 
-10. Retrofit Integration:
+10. Retrofit Integration: ✔✔✔✔✔✔
     - Implement Retrofit to handle API requests to the NewsAPI.org endpoints.
     - Create a service interface that defines the necessary API endpoints and request methods.
     - Use Retrofit to retrieve news articles and related data from the API.
 
-11. Room Integration:
+11. Room Integration: ✔✔✔✔✔✔
     - Set up a Room database to cache news articles locally.
     - Create entities and DAOs to store and retrieve articles from the local database.
     - Use Room to store and retrieve favorite articles.
 
-12. Repository Pattern:
+12. Repository Pattern: ✔✔✔✔✔✔
     - Implement a repository class that acts as an abstraction layer between the data sources (API and local database) and the ViewModel.
     - Define methods in the repository for fetching news articles from the API and local database.
     - Handle the logic for retrieving data from the appropriate source (e.g., check local database first, then make an API call if needed).
 
-13. MVVM Architecture:
+13. MVVM Architecture: ✔✔✔✔✔✔
     - Use the ViewModel to hold and manage the app's UI-related data and state.
     - Observe changes in LiveData objects from the ViewModel in the UI using the Observer pattern.
     - Update the ViewModel with data from the repository and expose it to the UI using LiveData.
