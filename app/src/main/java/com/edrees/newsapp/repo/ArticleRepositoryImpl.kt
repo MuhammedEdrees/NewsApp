@@ -20,6 +20,15 @@ class ArticleRepositoryImpl(
         return remoteSource.getTopHeadlinesByCategory(category, apiKey)
     }
 
+    override suspend fun getQuerySearchResult(
+        query: String,
+        apiKey: String,
+        lang: String,
+        page: Int
+    ): ArticleResponse {
+        return remoteSource.getQuerySearchResult(query, apiKey, lang, page)
+    }
+
     override suspend fun insertArticle(vararg articles: Article) {
         localSource.insertArticle(*articles)
     }
