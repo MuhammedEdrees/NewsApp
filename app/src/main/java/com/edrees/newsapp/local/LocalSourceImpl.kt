@@ -9,4 +9,10 @@ class LocalSourceImpl(context: Context): LocalSource {
     override suspend fun insertArticle(vararg articles: Article) {
         articleDao.insertArticle(*articles)
     }
+
+    override suspend fun getAllArticles() = articleDao.getAllArticles()
+
+    override suspend fun deleteArticle(article: Article) = articleDao.deleteArticle(article)
+
+    override suspend fun checkIfExists(url: String) = articleDao.checkIfExists(url) == 1
 }

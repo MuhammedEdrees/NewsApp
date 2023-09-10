@@ -7,5 +7,8 @@ interface ArticleRepository {
     suspend fun getTopHeadlinesByCountry( country: String, apiKey: String): ArticleResponse
     suspend fun getTopHeadlinesByCategory(category: String, apiKey: String): ArticleResponse
     suspend fun getQuerySearchResult(query: String, apiKey: String, lang: String, page: Int): ArticleResponse
-    suspend fun insertArticle(vararg articles: Article)
+    suspend fun insertLocalArticle(vararg articles: Article)
+    suspend fun getLocalArticles(): List<Article>
+    suspend fun deleteLocalArticle(article: Article)
+    suspend fun checkIfExistsLocally(article: Article): Boolean
 }
