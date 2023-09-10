@@ -11,4 +11,6 @@ interface ArticleService {
 
     @GET("top-headlines")
     suspend fun getTopHeadlinesByCategory(@Query("category") category: String, @Query("apiKey") apiKey: String): ArticleResponse
+    @GET("everything")
+    suspend fun getQuerySearchResult(@Query("q") query: String, @Query("apiKey") apiKey: String, @Query("language") lang: String, @Query("page") page: Int): ArticleResponse
 }
