@@ -13,4 +13,9 @@ interface ArticleDao {
     suspend fun insertArticle(vararg articles: Article)
     @Query("select * from articles")
     suspend fun getAllArticles(): List<Article>
+    @Delete
+    suspend fun deleteArticle(article: Article)
+    @Query("select exists(select * from articles where url = :url)")
+    suspend fun checkIfExists(url: String): Int
+
 }
