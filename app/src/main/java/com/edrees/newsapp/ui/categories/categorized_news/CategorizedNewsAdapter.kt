@@ -5,16 +5,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.edrees.newsapp.R
-import com.edrees.newsapp.databinding.HomeListItemBinding
+import com.edrees.newsapp.databinding.MainListItemBinding
 import com.edrees.newsapp.model.Article
 import com.edrees.newsapp.ui.home.DetailsCallback
 
 class CategorizedNewsAdapter(private val callback: DetailsCallback): RecyclerView.Adapter<CategorizedNewsAdapter.ViewHolder>(){
     private val data = mutableListOf<Article>()
-    class ViewHolder(val binding: HomeListItemBinding): RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: MainListItemBinding): RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = HomeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = MainListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 

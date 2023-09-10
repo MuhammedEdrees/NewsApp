@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.edrees.newsapp.R
-import com.edrees.newsapp.databinding.HomeListItemBinding
+import com.edrees.newsapp.databinding.MainListItemBinding
 import com.edrees.newsapp.model.Article
 
 class HomeAdapter(private val detailsCallback: DetailsCallback) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>(){
     private val data = mutableListOf<Article>()
-    class HomeViewHolder(val binding: HomeListItemBinding): RecyclerView.ViewHolder(binding.root)
+    class HomeViewHolder(val binding: MainListItemBinding): RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
-        val binding = HomeListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = MainListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return HomeViewHolder(binding)
     }
 

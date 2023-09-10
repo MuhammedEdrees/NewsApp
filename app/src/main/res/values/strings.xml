@@ -11,7 +11,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_categories">Categories</string>
     <string name="menu_search">Search</string>
-    <string name="menu_favorites">Favorites</string>
+    <string name="menu_bookmarks">Bookmarks</string>
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>

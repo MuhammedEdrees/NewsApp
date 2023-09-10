@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.edrees.newsapp.databinding.CategoryItemBinding
-import com.edrees.newsapp.databinding.HomeListItemBinding
 import com.edrees.newsapp.model.Category
 import jp.wasabeef.glide.transformations.BlurTransformation
 
