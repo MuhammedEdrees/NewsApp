@@ -29,8 +29,12 @@ class ArticleRepositoryImpl(
         return remoteSource.getQuerySearchResult(query, apiKey, lang, page)
     }
 
-    override suspend fun insertArticle(vararg articles: Article) {
+    override suspend fun insertLocalArticle(vararg articles: Article) {
         localSource.insertArticle(*articles)
     }
+
+    override suspend fun getLocalArticles() = localSource.getAllArticles()
+    override suspend fun deleteLocalArticle(article: Article) = localSource.deleteArticle(article)
+    override suspend fun checkIfExistsLocally(article: Article) = localSource.checkIfExists(article.url)
 
 }

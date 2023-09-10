@@ -38,4 +38,6 @@
     <string name="category_science">Science</string>
     <string name="category_sports">Sports</string>
     <string name="category_technology">Technology</string>
+    <string name="read_more">Read More</string>
+    <string name="details_template">%1s%2s</string>
 </resources>
