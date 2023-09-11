@@ -14,25 +14,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/source_textview"
-                    android:textAppearance="@style/DetailsSubText"
-                    android:layout_weight="0.5"
-                    tools:text="Source"/>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/time_textview"
-                    android:textAppearance="@style/DetailsSubText"
-                    android:layout_gravity="end"
-                    android:layout_weight="0.5"/>
-            </LinearLayout>
+                android:id="@+id/source_textview"
+                android:textAppearance="@style/DetailsSubText"
+                tools:text="Source"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -44,19 +31,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/author_textview"
-                android:textAppearance="@style/DetailsSubText"
-                android:layout_weight="0.5"/>
+                android:textAppearance="@style/DetailsSubText"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/time_textview"
+                android:textAppearance="@style/DetailsSubText"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="#C3C3C3"
+                android:layout_marginVertical="10dp"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/thumbnail_imageView"
-                android:layout_margin="8dp"
                 android:src="@drawable/ic_splash"/>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/content_textview"
-                android:textSize="16sp"/>
+                android:textSize="16sp"
+                android:layout_marginVertical="16dp"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

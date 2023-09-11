@@ -16,7 +16,12 @@ class BookmarksViewModel(private val repo: ArticleRepository) : ViewModel() {
             _listOfArticles.value = repo.getLocalArticles()
         }
     }
-    fun deleteBookmark(article: Article){
-        TODO("implement delete")
+    fun deleteBookmark(position: Int){
+        viewModelScope.launch {
+            repo.deleteLocalArticle(listOfArticles.value!!.get(position))
+            val list = listOfArticles.value!!.toMutableList()
+            list.removeAt(position)
+            _listOfArticles.value = list
+        }
     }
 }

@@ -10,7 +10,7 @@ import com.edrees.newsapp.model.Article
 import com.edrees.newsapp.ui.home.DetailsCallback
 import jp.wasabeef.glide.transformations.BlurTransformation
 
-class SecondaryAdapter(private val callback: DetailsCallback): RecyclerView.Adapter<SecondaryAdapter.ViewHolder>() {
+open class SecondaryAdapter(private val callback: DetailsCallback): RecyclerView.Adapter<SecondaryAdapter.ViewHolder>() {
     private val data = mutableListOf<Article>()
     inner class ViewHolder(val binding: SecondaryListItemBinding): RecyclerView.ViewHolder(binding.root) {
         init{
@@ -44,5 +44,9 @@ class SecondaryAdapter(private val callback: DetailsCallback): RecyclerView.Adap
         data.clear()
         data.addAll(newData)
         notifyDataSetChanged()
+    }
+    fun removeItem(pos: Int){
+        data.removeAt(pos)
+        notifyItemRemoved(pos)
     }
 }

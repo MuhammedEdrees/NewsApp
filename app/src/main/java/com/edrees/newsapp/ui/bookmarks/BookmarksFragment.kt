@@ -2,11 +2,15 @@ package com.edrees.newsapp.ui.bookmarks
 
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edrees.newsapp.R
@@ -36,12 +40,26 @@ class BookmarksFragment : Fragment(), DetailsCallback {
         super.onViewCreated(view, savedInstanceState)
         prepareViewModel()
         val adapter = SecondaryAdapter(this)
-        with(binding.bookmarksRecyclerView){
+        var isChanged = false
+        binding.bookmarksRecyclerView.apply{
             layoutManager = LinearLayoutManager(requireContext())
             this.adapter = adapter
         }
+        val swipeToDeleteCallback = object: SwipeToDeleteCallback(){
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                isChanged = true
+                adapter.removeItem(position)
+                viewModel.deleteBookmark(position)
+            }
+        }
+        val touchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        touchHelper.attachToRecyclerView(binding.bookmarksRecyclerView)
         viewModel.listOfArticles.observe(viewLifecycleOwner){
-            adapter.setData(it)
+            if(!isChanged){
+                isChanged = false
+                adapter.setData(it)
+            }
         }
         viewModel.getBookmarks()
     }
