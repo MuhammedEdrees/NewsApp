@@ -3,7 +3,6 @@ package com.edrees.newsapp.ui.details
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +20,10 @@ import com.edrees.newsapp.model.Article
 import com.edrees.newsapp.network.APIClient
 import com.edrees.newsapp.repo.ArticleRepositoryImpl
 import com.edrees.newsapp.ui.ViewModelFactory
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter.ofPattern
+import java.time.format.TextStyle
+import java.util.Locale
 
 class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
@@ -53,11 +56,20 @@ class DetailsFragment : Fragment() {
         val factory = ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
         viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java)
     }
+
     private fun bindAllViews(article: Article){
         binding.sourceTextview.bindNullableText(article.source?.name, "Source: ")
         binding.titleTextview.bindNullableText(article.title)
         binding.authorTextview.bindNullableText(article.author, "By: ")
-        binding.timeTextview.bindNullableText(article.publishedAt)
+        val articleDate = LocalDateTime.parse(article.publishedAt, ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
+        with(articleDate){
+            binding.timeTextview.bindNullableText(String.format(resources.getString(R.string.details_date_template),
+                dayOfWeek.getDisplayName(TextStyle.FULL, Locale.getDefault()),
+                month.getDisplayName(TextStyle.FULL, Locale.getDefault()),
+                dayOfMonth,
+                year,
+                timeTo12HFormat(hour, minute)), "Puplished at: ")
+        }
         binding.contentTextview.bindNullableText(article.content)
         if(article.urlToImage.isNullOrBlank()){
             binding.thumbnailImageView.setImageResource(R.drawable.no_image3)
@@ -95,5 +107,10 @@ class DetailsFragment : Fragment() {
         } else {
             this.text = String.format(resources.getString(R.string.details_template), prefix, text)
         }
+    }
+    private fun timeTo12HFormat(h: Int, m: Int): String {
+        val postfix = if (h <= 11) "AM" else "PM"
+        val hour = if(h == 0) 12 else h%12
+        return String.format("%02d:%02d %s", hour, m, postfix)
     }
 }

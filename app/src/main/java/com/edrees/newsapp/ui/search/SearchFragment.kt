@@ -3,14 +3,11 @@ package com.edrees.newsapp.ui.search
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.get
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -31,7 +28,7 @@ class SearchFragment : Fragment(), DetailsCallback {
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var searchEditText: TextInputEditText
-    private lateinit var adapter: SearchAdapter
+    private lateinit var adapter: SecondaryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,7 +52,7 @@ class SearchFragment : Fragment(), DetailsCallback {
         }
         recyclerView = binding.searchRecyclerView
         layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = SearchAdapter(this)
+        adapter = SecondaryAdapter(this)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
         searchEditText.addTextChangedListener(object: TextWatcher{

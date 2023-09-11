@@ -35,10 +35,10 @@
             app:destination="@id/detailsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/nav_favorites"
-        android:name="com.edrees.newsapp.ui.favorites.FavoritesFragment"
-        android:label="@string/menu_favorites"
-        tools:layout="@layout/fragment_favorites" >
+        android:id="@+id/nav_bookmarks"
+        android:name="com.edrees.newsapp.ui.bookmarks.BookmarksFragment"
+        android:label="@string/menu_bookmarks"
+        tools:layout="@layout/fragment_bookmarks" >
         <action
             android:id="@+id/action_nav_favorites_to_detailsFragment"
             app:destination="@id/detailsFragment" />
