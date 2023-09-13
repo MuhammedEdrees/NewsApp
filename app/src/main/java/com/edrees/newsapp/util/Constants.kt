@@ -14,4 +14,5 @@ object Constants {
     fun setLanguage(language: String){
         _language = language
     }
+    val repoURL = ""
 }

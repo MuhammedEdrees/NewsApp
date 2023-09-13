@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NewsHub</string>
+    <string name="app_description">"NewsHub: Stay Updated" is a comprehensive Android app leveraging the power of NewsAPI.org. Discover the latest top headlines and explore news articles across various categories. Seamlessly search for specific topics of interest and save articles to your bookmarks for convenient access later. With NewsHub, you can personalize your news consumption and stay informed about global events. The app offers a user-friendly interface, real-time updates, and a wide range of news sources. Stay updated with the world at your fingertips.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">NewsHub</string>
