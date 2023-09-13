@@ -13,12 +13,12 @@
     <string name="menu_search">Search</string>
     <string name="menu_bookmarks">Bookmarks</string>
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="settings_general_header">General</string>
+    <string name="display_header">Display</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="settings_language">Language</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
@@ -41,4 +41,7 @@
     <string name="read_more">Read More</string>
     <string name="details_template">%1s%2s</string>
     <string name="details_date_template">%1s, %2s %3d, %4d - %5s</string>
+    <string name="country">Country</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="font_size">Font Size</string>
 </resources>

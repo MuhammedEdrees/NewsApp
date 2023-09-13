@@ -1,0 +1,44 @@
+<PreferenceScreen
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/settings_general_header"
+        app:initialExpandedChildrenCount="3">
+        <ListPreference
+            android:title="@string/country"
+            android:key="country"
+            android:entries="@array/country_entries"
+            android:entryValues="@array/country_values"
+            android:defaultValue="us"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:defaultValue="en"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values"
+            android:key="language"
+            android:title="@string/settings_language"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/display_header"
+        app:initialExpandedChildrenCount="3">
+
+        <DropDownPreference
+            android:title="@string/dark_mode"
+            android:entries="@array/dark_entries"
+            android:entryValues="@array/dark_values"
+            android:defaultValue="default"
+            app:useSimpleSummaryProvider="true"
+            android:key="dark_mode" />
+<!--        <DropDownPreference-->
+<!--            android:title="@string/font_size"-->
+<!--            android:entries="@array/font_entries"-->
+<!--            android:entryValues="@array/font_values"-->
+<!--            android:defaultValue="medium"-->
+<!--            app:useSimpleSummaryProvider="true"-->
+<!--            android:key="font_size" />-->
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
