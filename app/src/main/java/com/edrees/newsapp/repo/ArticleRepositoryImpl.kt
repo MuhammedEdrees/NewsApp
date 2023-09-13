@@ -4,13 +4,14 @@ import com.edrees.newsapp.local.LocalSource
 import com.edrees.newsapp.model.Article
 import com.edrees.newsapp.model.ArticleResponse
 import com.edrees.newsapp.network.ArticleRemoteDataSource
+import com.edrees.newsapp.util.Constants.country
 
 class ArticleRepositoryImpl(
     private val remoteSource: ArticleRemoteDataSource,
     private val localSource: LocalSource
     ) : ArticleRepository {
-    override suspend fun getTopHeadlinesByCountry(country: String, apiKey: String): ArticleResponse {
-        return remoteSource.getTopHeadlinesByCountry(country, apiKey)
+    override suspend fun getTopHeadlines(language: String, country: String, apiKey: String): ArticleResponse {
+        return remoteSource.getTopHeadlines(language, country, apiKey)
     }
 
     override suspend fun getTopHeadlinesByCategory(

@@ -5,10 +5,11 @@ import com.edrees.newsapp.model.ArticleResponse
 import retrofit2.create
 
 object APIClient: ArticleRemoteDataSource {
-    override suspend fun getTopHeadlinesByCountry(
+    override suspend fun getTopHeadlines(
+        language: String,
         country: String,
         apiKey: String
-    ) = BaseRetrofitHelper.retrofit.create(ArticleService::class.java).getTopHeadlinesByCountry(country, apiKey)
+    ) = BaseRetrofitHelper.retrofit.create(ArticleService::class.java).getTopHeadlines(language, country, apiKey)
 
     override suspend fun getTopHeadlinesByCategory(
         category: String,

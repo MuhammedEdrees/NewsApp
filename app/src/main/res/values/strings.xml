@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">NewsHub</string>
+    <string name="app_description">"NewsHub: Stay Updated" is a comprehensive Android app leveraging the power of NewsAPI.org. Discover the latest top headlines and explore news articles across various categories. Seamlessly search for specific topics of interest and save articles to your bookmarks for convenient access later. With NewsHub, you can personalize your news consumption and stay informed about global events. The app offers a user-friendly interface, real-time updates, and a wide range of news sources. Stay updated with the world at your fingertips.</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">NewsHub</string>
@@ -13,12 +14,12 @@
     <string name="menu_search">Search</string>
     <string name="menu_bookmarks">Bookmarks</string>
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="settings_general_header">General</string>
+    <string name="display_header">Display</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
+    <string name="settings_language">Language</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
@@ -41,4 +42,7 @@
     <string name="read_more">Read More</string>
     <string name="details_template">%1s%2s</string>
     <string name="details_date_template">%1s, %2s %3d, %4d - %5s</string>
+    <string name="country">Country</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="font_size">Font Size</string>
 </resources>
