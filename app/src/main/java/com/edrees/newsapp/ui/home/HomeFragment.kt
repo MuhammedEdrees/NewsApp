@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edrees.newsapp.databinding.FragmentHomeBinding
 import com.edrees.newsapp.local.LocalSourceImpl
@@ -14,6 +15,7 @@ import com.edrees.newsapp.model.Article
 import com.edrees.newsapp.network.APIClient
 import com.edrees.newsapp.repo.ArticleRepositoryImpl
 import com.edrees.newsapp.ui.ViewModelFactory
+import com.edrees.newsapp.util.Constants
 
 class HomeFragment : Fragment(), DetailsCallback {
 
