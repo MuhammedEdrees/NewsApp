@@ -48,6 +48,7 @@ class HomeFragment : Fragment(), DetailsCallback {
         viewModel.getTopHeadlines()
     }
 
+
     private fun prepareViewModel() {
         val factory = ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
         viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)

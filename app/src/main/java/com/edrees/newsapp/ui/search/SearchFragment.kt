@@ -47,6 +47,7 @@ class SearchFragment : Fragment(), DetailsCallback {
             if(searchEditText.text.isNullOrBlank()){
                 adapter.setData(listOf())
             } else {
+                stopShimmerAnimation()
                 adapter.setData(articles)
             }
         }
@@ -63,6 +64,7 @@ class SearchFragment : Fragment(), DetailsCallback {
                 if(p0.toString().isBlank()){
                     adapter.setData(listOf<Article>())
                 } else {
+                    startShimmerAnimation()
                     viewModel.search(p0.toString(), "en", 1)
                 }
             }
@@ -70,6 +72,18 @@ class SearchFragment : Fragment(), DetailsCallback {
             override fun afterTextChanged(p0: Editable?) {
             }
         })
+    }
+
+    private fun startShimmerAnimation() {
+        binding.shimmerLayout.visibility = View.VISIBLE
+        binding.shimmerLayout.startShimmer()
+        binding.searchRecyclerView.visibility = View.INVISIBLE
+    }
+
+    private fun stopShimmerAnimation() {
+        binding.shimmerLayout.stopShimmer()
+        binding.searchRecyclerView.visibility = View.VISIBLE
+        binding.shimmerLayout.visibility = View.GONE
     }
 
     private fun prepareViewModel() {

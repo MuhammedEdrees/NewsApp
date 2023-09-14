@@ -9,13 +9,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        android:id="@+id/latest_new_label"
+        android:id="@+id/latest_news_label"
         android:text="@string/latest_news"
         android:textSize="24sp"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/home_recycler_view"
-        app:layout_constraintTop_toBottomOf="@id/latest_new_label"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/home_recycler_view"
+            app:layout_constraintTop_toBottomOf="@id/latest_news_label"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
