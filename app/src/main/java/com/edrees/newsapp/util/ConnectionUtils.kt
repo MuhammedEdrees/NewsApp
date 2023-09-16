@@ -12,5 +12,9 @@ object ConnectionUtils {
         val networkCapabilities = connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
         return networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
     }
-
+    fun Fragment.recreateFragment() {
+        val fragment = this
+        parentFragmentManager.beginTransaction().detach(fragment).commitNow()
+        parentFragmentManager.beginTransaction().attach(fragment).commitNow()
+    }
 }

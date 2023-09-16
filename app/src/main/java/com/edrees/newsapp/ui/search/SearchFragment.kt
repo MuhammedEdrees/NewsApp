@@ -23,6 +23,7 @@ import com.edrees.newsapp.repo.ArticleRepositoryImpl
 import com.edrees.newsapp.ui.ViewModelFactory
 import com.edrees.newsapp.ui.home.DetailsCallback
 import com.edrees.newsapp.util.ConnectionUtils.checkInternetConnection
+import com.edrees.newsapp.util.ConnectionUtils.recreateFragment
 import com.google.android.material.textfield.TextInputEditText
 
 class SearchFragment : Fragment(), DetailsCallback {
@@ -34,6 +35,7 @@ class SearchFragment : Fragment(), DetailsCallback {
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var searchEditText: TextInputEditText
     private lateinit var adapter: SecondaryAdapter
+    private var connected = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,11 +48,13 @@ class SearchFragment : Fragment(), DetailsCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(!checkInternetConnection(activity)) {
+        connected = checkInternetConnection(activity)
+        if(!connected) {
             showNoInternetConnectionLayout()
         } else {
             prepareViewModel()
             hideNoInternetConnectionLayout()
+            adapter = SecondaryAdapter(this)
             searchEditText = binding.searchTextInputLayout.editText as TextInputEditText
             viewModel.listOfArticles.observe(viewLifecycleOwner){articles ->
                 if(searchEditText.text.isNullOrBlank()){
@@ -62,7 +66,7 @@ class SearchFragment : Fragment(), DetailsCallback {
             }
             recyclerView = binding.searchRecyclerView
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = SecondaryAdapter(this)
+
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = adapter
             searchEditText.addTextChangedListener(object: TextWatcher{
@@ -93,7 +97,7 @@ class SearchFragment : Fragment(), DetailsCallback {
         binding.noInternetLayout.visibility = View.VISIBLE
         binding.contentMain.visibility = View.GONE
         binding.retryButton.setOnClickListener{
-            (activity as MainActivity).refreshFragment(this)
+            this.recreateFragment()
         }
     }
 
@@ -115,7 +119,9 @@ class SearchFragment : Fragment(), DetailsCallback {
     }
 
     override fun onDestroyView() {
-        adapter.setData(listOf())
+        if(connected){
+            adapter.setData(listOf())
+        }
         super.onDestroyView()
         _binding = null
     }

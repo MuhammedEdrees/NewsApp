@@ -26,6 +26,7 @@ import com.edrees.newsapp.ui.home.DetailsCallback
 import com.edrees.newsapp.ui.home.HomeAdapter
 import com.edrees.newsapp.ui.home.HomeFragmentDirections
 import com.edrees.newsapp.util.ConnectionUtils
+import com.edrees.newsapp.util.ConnectionUtils.recreateFragment
 
 class CategorizedNewsFragment : Fragment(), DetailsCallback {
     private lateinit var recyclerView: RecyclerView
@@ -55,8 +56,8 @@ class CategorizedNewsFragment : Fragment(), DetailsCallback {
                 adapter.setData(it)
             }
             viewModel.getCategorizedArticles(resources.getString(args.category.nameRes).lowercase())
-            setFragmentTitle(String.format(resources.getString(R.string.news_category_title), resources.getString(args.category.nameRes)))
         }
+        setFragmentTitle(String.format(resources.getString(R.string.news_category_title), resources.getString(args.category.nameRes)))
     }
 
     private fun hideNoInternetConnectionLayout() {
@@ -68,7 +69,7 @@ class CategorizedNewsFragment : Fragment(), DetailsCallback {
         binding.noInternetLayout.visibility = View.VISIBLE
         binding.contentMain.visibility = View.GONE
         binding.retryButton.setOnClickListener{
-            (activity as MainActivity).refreshFragment(this)
+            this.recreateFragment()
         }
     }
 

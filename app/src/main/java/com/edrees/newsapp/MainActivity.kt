@@ -1,6 +1,7 @@
 package com.edrees.newsapp
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Menu
@@ -98,13 +99,5 @@ class MainActivity : AppCompatActivity(){
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-    @SuppressLint("DetachAndAttachSameFragment")
-    fun refreshFragment(fragment: Fragment) {
-        fragment.parentFragmentManager
-            .beginTransaction()
-            .detach(fragment)
-            .attach(fragment)
-            .addToBackStack(null)
-            .commit()
-    }
+
 }

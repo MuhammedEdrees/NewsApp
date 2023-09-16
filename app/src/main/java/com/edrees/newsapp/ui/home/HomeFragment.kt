@@ -21,6 +21,7 @@ import com.edrees.newsapp.repo.ArticleRepositoryImpl
 import com.edrees.newsapp.ui.ViewModelFactory
 import com.edrees.newsapp.ui.search.SecondaryAdapter
 import com.edrees.newsapp.util.ConnectionUtils.checkInternetConnection
+import com.edrees.newsapp.util.ConnectionUtils.recreateFragment
 import com.edrees.newsapp.util.Constants
 import com.google.android.material.textfield.TextInputEditText
 
@@ -70,7 +71,7 @@ class HomeFragment : Fragment(), DetailsCallback {
         binding.noInternetLayout.visibility = View.VISIBLE
         binding.contentMain.visibility = View.GONE
         binding.retryButton.setOnClickListener{
-            (activity as MainActivity).refreshFragment(this)
+            this.recreateFragment()
         }
     }
     private fun prepareViewModel() {
