@@ -69,4 +69,6 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
     implementation "com.facebook.shimmer:shimmer:0.5.0"
     implementation 'io.github.medyo:android-about-page:2.0.0'
+    def lottieVersion = "6.1.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

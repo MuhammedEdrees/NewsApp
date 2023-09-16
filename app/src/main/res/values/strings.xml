@@ -45,4 +45,6 @@
     <string name="country">Country</string>
     <string name="dark_mode">Dark Mode</string>
     <string name="font_size">Font Size</string>
+    <string name="no_internet_connection_available">No Internet Connection Available</string>
+    <string name="retry">Retry</string>
 </resources>

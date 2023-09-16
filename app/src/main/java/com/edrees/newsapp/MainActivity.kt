@@ -1,5 +1,6 @@
 package com.edrees.newsapp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Menu
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.edrees.newsapp.databinding.ActivityMainBinding
 import com.edrees.newsapp.util.Constants
@@ -95,5 +97,14 @@ class MainActivity : AppCompatActivity(){
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+    @SuppressLint("DetachAndAttachSameFragment")
+    fun refreshFragment(fragment: Fragment) {
+        fragment.parentFragmentManager
+            .beginTransaction()
+            .detach(fragment)
+            .attach(fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
