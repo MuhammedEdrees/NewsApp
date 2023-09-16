@@ -31,7 +31,7 @@ class BookmarksFragment : Fragment(), DetailsCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentBookmarksBinding.inflate(inflater, container, false)
         return binding.root
     }

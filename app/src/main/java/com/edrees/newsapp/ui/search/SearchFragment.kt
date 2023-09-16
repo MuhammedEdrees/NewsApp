@@ -1,8 +1,5 @@
 package com.edrees.newsapp.ui.search
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,7 +11,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.edrees.newsapp.MainActivity
 import com.edrees.newsapp.databinding.FragmentSearchBinding
 import com.edrees.newsapp.local.LocalSourceImpl
 import com.edrees.newsapp.model.Article
@@ -49,35 +45,34 @@ class SearchFragment : Fragment(), DetailsCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         connected = checkInternetConnection(activity)
-        if(!connected) {
+        if (!connected) {
             showNoInternetConnectionLayout()
         } else {
             prepareViewModel()
             hideNoInternetConnectionLayout()
             adapter = SecondaryAdapter(this)
             searchEditText = binding.searchTextInputLayout.editText as TextInputEditText
-            viewModel.listOfArticles.observe(viewLifecycleOwner){articles ->
-                if(searchEditText.text.isNullOrBlank()){
+            viewModel.listOfArticles.observe(viewLifecycleOwner) { articles ->
+                if (searchEditText.text.isNullOrBlank()) {
                     adapter.setData(listOf())
                 } else {
-                    stopShimmerAnimation()
                     adapter.setData(articles)
                 }
             }
             recyclerView = binding.searchRecyclerView
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
             recyclerView.layoutManager = layoutManager
             recyclerView.adapter = adapter
-            searchEditText.addTextChangedListener(object: TextWatcher{
+            searchEditText.addTextChangedListener(object : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 }
 
                 override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                    if(p0.toString().isBlank()){
+                    if (p0.toString().isBlank()) {
                         adapter.setData(listOf<Article>())
                     } else {
-                        startShimmerAnimation()
                         viewModel.search(p0.toString(), "en", 1)
                     }
                 }
@@ -96,30 +91,19 @@ class SearchFragment : Fragment(), DetailsCallback {
     private fun showNoInternetConnectionLayout() {
         binding.noInternetLayout.visibility = View.VISIBLE
         binding.contentMain.visibility = View.GONE
-        binding.retryButton.setOnClickListener{
+        binding.retryButton.setOnClickListener {
             this.recreateFragment()
         }
     }
 
-    private fun startShimmerAnimation() {
-        binding.shimmerLayout.visibility = View.VISIBLE
-        binding.shimmerLayout.startShimmer()
-        binding.searchRecyclerView.visibility = View.INVISIBLE
-    }
-
-    private fun stopShimmerAnimation() {
-        binding.shimmerLayout.stopShimmer()
-        binding.searchRecyclerView.visibility = View.VISIBLE
-        binding.shimmerLayout.visibility = View.GONE
-    }
-
     private fun prepareViewModel() {
-        val factory = ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
+        val factory =
+            ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
         viewModel = ViewModelProvider(this, factory).get(SearchViewModel::class.java)
     }
 
     override fun onDestroyView() {
-        if(connected){
+        if (connected) {
             adapter.setData(listOf())
         }
         super.onDestroyView()
