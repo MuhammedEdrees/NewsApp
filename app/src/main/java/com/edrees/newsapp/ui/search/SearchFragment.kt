@@ -1,5 +1,8 @@
 package com.edrees.newsapp.ui.search
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.edrees.newsapp.MainActivity
 import com.edrees.newsapp.databinding.FragmentSearchBinding
 import com.edrees.newsapp.local.LocalSourceImpl
 import com.edrees.newsapp.model.Article
@@ -18,6 +22,7 @@ import com.edrees.newsapp.network.APIClient
 import com.edrees.newsapp.repo.ArticleRepositoryImpl
 import com.edrees.newsapp.ui.ViewModelFactory
 import com.edrees.newsapp.ui.home.DetailsCallback
+import com.edrees.newsapp.util.ConnectionUtils.checkInternetConnection
 import com.google.android.material.textfield.TextInputEditText
 
 class SearchFragment : Fragment(), DetailsCallback {
@@ -41,37 +46,55 @@ class SearchFragment : Fragment(), DetailsCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        prepareViewModel()
-        searchEditText = binding.searchTextInputLayout.editText as TextInputEditText
-        viewModel.listOfArticles.observe(viewLifecycleOwner){articles ->
-            if(searchEditText.text.isNullOrBlank()){
-                adapter.setData(listOf())
-            } else {
-                stopShimmerAnimation()
-                adapter.setData(articles)
-            }
-        }
-        recyclerView = binding.searchRecyclerView
-        layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        adapter = SecondaryAdapter(this)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.adapter = adapter
-        searchEditText.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if(p0.toString().isBlank()){
-                    adapter.setData(listOf<Article>())
+        if(!checkInternetConnection(activity)) {
+            showNoInternetConnectionLayout()
+        } else {
+            prepareViewModel()
+            hideNoInternetConnectionLayout()
+            searchEditText = binding.searchTextInputLayout.editText as TextInputEditText
+            viewModel.listOfArticles.observe(viewLifecycleOwner){articles ->
+                if(searchEditText.text.isNullOrBlank()){
+                    adapter.setData(listOf())
                 } else {
-                    startShimmerAnimation()
-                    viewModel.search(p0.toString(), "en", 1)
+                    stopShimmerAnimation()
+                    adapter.setData(articles)
                 }
             }
+            recyclerView = binding.searchRecyclerView
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = SecondaryAdapter(this)
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = adapter
+            searchEditText.addTextChangedListener(object: TextWatcher{
+                override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                }
 
-            override fun afterTextChanged(p0: Editable?) {
-            }
-        })
+                override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    if(p0.toString().isBlank()){
+                        adapter.setData(listOf<Article>())
+                    } else {
+                        startShimmerAnimation()
+                        viewModel.search(p0.toString(), "en", 1)
+                    }
+                }
+
+                override fun afterTextChanged(p0: Editable?) {
+                }
+            })
+        }
+    }
+
+    private fun hideNoInternetConnectionLayout() {
+        binding.contentMain.visibility = View.VISIBLE
+        binding.noInternetLayout.visibility = View.GONE
+    }
+
+    private fun showNoInternetConnectionLayout() {
+        binding.noInternetLayout.visibility = View.VISIBLE
+        binding.contentMain.visibility = View.GONE
+        binding.retryButton.setOnClickListener{
+            (activity as MainActivity).refreshFragment(this)
+        }
     }
 
     private fun startShimmerAnimation() {
