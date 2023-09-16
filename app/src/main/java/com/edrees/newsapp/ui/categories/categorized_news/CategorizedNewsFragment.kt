@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
+import com.edrees.newsapp.MainActivity
 import com.edrees.newsapp.R
 import com.edrees.newsapp.databinding.FragmentCategoriesBinding
 import com.edrees.newsapp.databinding.FragmentCategorizedNewsBinding
@@ -22,7 +23,9 @@ import com.edrees.newsapp.network.APIClient
 import com.edrees.newsapp.repo.ArticleRepositoryImpl
 import com.edrees.newsapp.ui.ViewModelFactory
 import com.edrees.newsapp.ui.home.DetailsCallback
+import com.edrees.newsapp.ui.home.HomeAdapter
 import com.edrees.newsapp.ui.home.HomeFragmentDirections
+import com.edrees.newsapp.util.ConnectionUtils
 
 class CategorizedNewsFragment : Fragment(), DetailsCallback {
     private lateinit var recyclerView: RecyclerView
@@ -40,15 +43,33 @@ class CategorizedNewsFragment : Fragment(), DetailsCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        prepareViewModel()
-        val adapter = CategorizedNewsAdapter(this)
-        recyclerView = binding.categorizedNewsRecyclerView
-        recyclerView.adapter = adapter
-        viewModel.listOfArticles.observe(viewLifecycleOwner){
-            adapter.setData(it)
+        if(!ConnectionUtils.checkInternetConnection(activity)) {
+            showNoInternetConnectionLayout()
+        } else {
+            hideNoInternetConnectionLayout()
+            prepareViewModel()
+            val adapter = CategorizedNewsAdapter(this)
+            recyclerView = binding.categorizedNewsRecyclerView
+            recyclerView.adapter = adapter
+            viewModel.listOfArticles.observe(viewLifecycleOwner){
+                adapter.setData(it)
+            }
+            viewModel.getCategorizedArticles(resources.getString(args.category.nameRes).lowercase())
+            setFragmentTitle(String.format(resources.getString(R.string.news_category_title), resources.getString(args.category.nameRes)))
         }
-        viewModel.getCategorizedArticles(resources.getString(args.category.nameRes).lowercase())
-        setFragmentTitle(String.format(resources.getString(R.string.news_category_title), resources.getString(args.category.nameRes)))
+    }
+
+    private fun hideNoInternetConnectionLayout() {
+        binding.contentMain.visibility = View.VISIBLE
+        binding.noInternetLayout.visibility = View.GONE
+    }
+
+    private fun showNoInternetConnectionLayout() {
+        binding.noInternetLayout.visibility = View.VISIBLE
+        binding.contentMain.visibility = View.GONE
+        binding.retryButton.setOnClickListener{
+            (activity as MainActivity).refreshFragment(this)
+        }
     }
 
     private fun setFragmentTitle(title: String) {
