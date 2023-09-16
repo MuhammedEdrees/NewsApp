@@ -18,22 +18,22 @@
    - Display a list of news categories.
    - When a category is selected, show a list of news articles related to that category.
 
-6. Search Fragment:
+6. Search Fragment: ✔✔✔✔✔✔
    - Allow users to enter keywords to search for specific news articles.
    - Display a list of articles based on the search query.
    - Include pagination to load more search results.
 
-7. Article Detail View:
+7. Article Detail View: ✔✔✔✔✔✔
    - Show the full content of a news article, including the title, source, author, published date, and article body.
    - Display the article image (if available) in a larger view.
    - Provide options to share the article via social media or other apps.
    - Allow users to bookmark articles as favorites.
 
-8. Favorites Fragment:
+8. Favorites Fragment: ✔✔✔✔✔✔
    - Display a list of articles that users have bookmarked as favorites.
    - Users can swipe to remove articles from the favorites list.
 
-9. Settings Fragment:
+9. Settings Fragment: ✔✔✔✔✔✔
    - Allow users to customize app settings, such as theme selection, and language preferences.
 
 10. Retrofit Integration: ✔✔✔✔✔✔
