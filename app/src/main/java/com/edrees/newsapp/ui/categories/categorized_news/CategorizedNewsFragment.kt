@@ -49,7 +49,7 @@ class CategorizedNewsFragment : Fragment(), DetailsCallback {
         } else {
             hideNoInternetConnectionLayout()
             prepareViewModel()
-            val adapter = CategorizedNewsAdapter(this)
+            val adapter = HomeAdapter(this, requireContext())
             recyclerView = binding.categorizedNewsRecyclerView
             recyclerView.adapter = adapter
             viewModel.listOfArticles.observe(viewLifecycleOwner){
