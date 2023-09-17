@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">أخبارك</string>
+    <string name="app_description">أخبارك: ابق مطلعا. هو تطبيق أندرويد شامل مبني على newsapi.org.اقرأ أحدث العناوين الرئيسية وتصفح مقالات الأخبار في مختلف المجالات. ابحث بسهولة عن المواضيع التي تهمك واحفظ المقالات التي أعجبتك في الإشارات المرجعية لتصفحها لاحقًا. مع أخبارك, يمكنك تخصيص استهلاك الأخبار الخاص بك والبقاء على علم بالأحداث العالمية. يوفر التطبيق واجهة سهلة الاستخدام وتحديثات فورية ومجموعة واسعة من مصادر الأخبار. ابقَ على اطّلاع بالعالم بين يديك</string>
+    <string name="navigation_drawer_open">فتح القائمة الجانبية</string>
+    <string name="navigation_drawer_close">إغلاق القائمة الجانبية</string>
+    <string name="nav_header_title">أخبارك</string>
+    <string name="nav_header_subtitle">مصدرك لأحدث الأخبار</string>
+    <string name="nav_header_desc">وصف مقدمة القائمة الجانبية</string>
+    <string name="action_settings">الإعدادات</string>
+    <string name="action_about">نبذة عنا</string>
+
+    <string name="menu_home">الرئيسية</string>
+    <string name="menu_categories">الفئات</string>
+    <string name="menu_search">البحث</string>
+    <string name="menu_bookmarks">الإشارات المرجعية</string>
+    <!-- Preference Titles -->
+    <string name="settings_general_header">عام</string>
+    <string name="display_header">العرض</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">توقيعك</string>
+    <string name="settings_language">لغة الأخبار</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">تزامن البريد الإلكتروني بشكل دوري</string>
+    <string name="attachment_title">تنزيل المرفقات الواردة</string>
+    <string name="attachment_summary_on">تنزيل المرفقات تلقائيًا لرسائل البريد الوارد</string>
+    <string name="attachment_summary_off">تنزيل المرفقات فقط عند الطلب اليدوي</string>
+    <string name="latest_news">أحدث الأخبار</string>
+    <string name="news_category_title">أخبار %1s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">مرحبًا بك في قطعة الشاشة الفارغة</string>
+    <!-- Categories Labels-->
+    <string name="category_business">الأعمال</string>
+    <string name="category_entertainment">الترفيه</string>
+    <string name="category_general">عامة</string>
+    <string name="category_health">الصحة</string>
+    <string name="category_science">العلوم</string>
+    <string name="category_sports">الرياضة</string>
+    <string name="category_technology">التكنولوجيا</string>
+    <string name="read_more">اقرأ المزيد</string>
+    <string name="details_template">%1s%2s</string>
+    <string name="details_date_template">%1$s، %2$s %3$d، %4$d - %5$s</string>
+    <string name="country">البلد</string>
+    <string name="dark_mode">الوضع الليلي</string>
+    <string name="font_size">حجم الخط</string>
+    <string name="no_internet_connection_available">لا يوجد اتصال بالإنترنت</string>
+    <string name="retry">إعادة المحاولة</string>
+    <string name="a_few_seconds_ago">منذ بضع ثواني</string>
+    <string name="home_minute_count">منذ %1d دقائق</string>
+    <string name="home_hour_count">منذ %1d ساعات</string>
+    <string name="home_yesterday">الأمس</string>
+    <string name="home_last_day">%1s الماضي</string>
+    <string name="saturday">السبت</string>
+    <string name="sunday">الأحد</string>
+    <string name="monday">الاثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wednesday">الأربعاء</string>
+    <string name="thursday">الخميس</string>
+    <string name="friday">الجمعة</string>
+    <string name="settings_locale">لغة العرض</string>
+    <string name="about_connect_group">تواصل معنا</string>
+</resources>

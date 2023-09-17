@@ -1,15 +1,25 @@
 package com.edrees.newsapp.ui.settings
 
+import android.app.LocaleManager
+import android.content.res.Configuration
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.Toolbar
 import androidx.preference.DropDownPreference
 import androidx.preference.ListPreference
 import androidx.preference.PreferenceFragmentCompat
 import com.edrees.newsapp.R
 import com.edrees.newsapp.util.Constants
+import com.edrees.newsapp.util.LocaleHelper
+import java.util.Locale
 
 class SettingsFragment : PreferenceFragmentCompat() {
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setFragmentTitle(requireContext().getString(R.string.action_settings))
+    }
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
         val countryPreference = findPreference<ListPreference>("country")
@@ -39,6 +49,20 @@ class SettingsFragment : PreferenceFragmentCompat() {
             }
             true
         }
+        val localePreference = findPreference<ListPreference>("locale")
+        localePreference?.setOnPreferenceChangeListener{_, newValue ->
+            when(newValue as String){
+                "ar_eg" -> {
+                    LocaleHelper().setLocale(requireContext(), "ar")
+                    activity?.recreate()
+                }
+                "en_us" -> {
+                    LocaleHelper().setLocale(requireContext(), "en")
+                    activity?.recreate()
+                }
+            }
+            true
+        }
 //        val fontSizePreference = findPreference<DropDownPreference>("font_size")
 //        fontSizePreference?.setOnPreferenceChangeListener{_, newValue ->
 //            when(newValue as String) {
@@ -54,5 +78,10 @@ class SettingsFragment : PreferenceFragmentCompat() {
 //            }
 //            true
 //        }
+    }
+    private fun setFragmentTitle(title: String) {
+        val activity = requireActivity() as AppCompatActivity
+        val toolbar = activity.findViewById<Toolbar>(R.id.toolbar)
+        toolbar.title = title
     }
 }
