@@ -18,6 +18,13 @@
             android:key="language"
             android:title="@string/settings_language"
             app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:defaultValue="en_us"
+            android:entries="@array/locale_entries"
+            android:entryValues="@array/locale_values"
+            android:key="locale"
+            android:title="@string/settings_locale"
+            app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
 

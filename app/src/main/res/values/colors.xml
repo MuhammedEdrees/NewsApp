@@ -10,4 +10,5 @@
     <color name="splash_background">#FFB1B1B1</color>
     <color name="text_secondary">#DCDCDC</color>
     <color name="shimmer">#DDDDDD</color>
+    <color name="dark_grey">#656565</color>
 </resources>

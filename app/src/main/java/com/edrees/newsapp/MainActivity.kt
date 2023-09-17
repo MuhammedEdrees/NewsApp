@@ -1,6 +1,7 @@
 package com.edrees.newsapp
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.util.TypedValue
@@ -21,6 +22,7 @@ import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
 import com.edrees.newsapp.databinding.ActivityMainBinding
 import com.edrees.newsapp.util.Constants
+import com.edrees.newsapp.util.LocaleHelper
 
 class MainActivity : AppCompatActivity(){
 
@@ -100,4 +102,8 @@ class MainActivity : AppCompatActivity(){
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
+    override fun attachBaseContext(base: Context) {
+        LocaleHelper().setLocale(base, LocaleHelper().getLanguage(base))
+        super.attachBaseContext(LocaleHelper().onAttach(base))
+    }
 }

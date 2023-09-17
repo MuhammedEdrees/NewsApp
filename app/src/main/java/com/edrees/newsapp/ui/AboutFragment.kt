@@ -23,13 +23,13 @@ class AboutFragment : Fragment() {
         val versionElement = Element().apply {
             title = "Version 1.0.0"
         }
-        setFragmentTitle("About The App")
+        setFragmentTitle(requireContext().getString(R.string.action_about))
         return AboutPage(requireContext())
             .isRTL(false)
             .setDescription(getString(R.string.app_description))
             .setImage(R.drawable.ic_about_icon)
             .addItem(versionElement)
-            .addGroup("Connect with us")
+            .addGroup(getString(R.string.about_connect_group))
             .addEmail("muhammed.edrees101@gmail.com")
             .addWebsite("https://g.dev/edrees/")
             .addGitHub("MuhammedEdrees/NewsApp")

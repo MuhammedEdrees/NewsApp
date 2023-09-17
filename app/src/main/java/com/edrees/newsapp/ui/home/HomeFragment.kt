@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), DetailsCallback {
             hideNoInternetConnectionLayout()
             prepareViewModel()
             recyclerView = binding.homeRecyclerView
-            val adapter = HomeAdapter(this)
+            val adapter = HomeAdapter(this, context!!)
             recyclerView.adapter = adapter
             viewModel.listOfArticle.observe(viewLifecycleOwner){
                 adapter.setData(it)

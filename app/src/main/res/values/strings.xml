@@ -19,7 +19,7 @@
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
-    <string name="settings_language">Language</string>
+    <string name="settings_language">News Language</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
@@ -47,4 +47,18 @@
     <string name="font_size">Font Size</string>
     <string name="no_internet_connection_available">No Internet Connection Available</string>
     <string name="retry">Retry</string>
+    <string name="a_few_seconds_ago">a few seconds ago</string>
+    <string name="home_minute_count">%1d minutes ago</string>
+    <string name="home_hour_count">%1d hours age</string>
+    <string name="home_yesterday">Yesterday</string>
+    <string name="home_last_day">Last %1s</string>
+    <string name="saturday">Saturday</string>
+    <string name="sunday">Sunday</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="settings_locale">Locale</string>
+    <string name="about_connect_group">Connect with us</string>
 </resources>
