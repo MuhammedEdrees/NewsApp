@@ -1,39 +1,30 @@
 package com.edrees.newsapp.ui.categories.categorized_news
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.RecyclerView
-import com.edrees.newsapp.MainActivity
 import com.edrees.newsapp.R
-import com.edrees.newsapp.databinding.FragmentCategoriesBinding
 import com.edrees.newsapp.databinding.FragmentCategorizedNewsBinding
-import com.edrees.newsapp.local.LocalSourceImpl
 import com.edrees.newsapp.model.Article
-import com.edrees.newsapp.network.APIClient
-import com.edrees.newsapp.repo.ArticleRepositoryImpl
-import com.edrees.newsapp.ui.ViewModelFactory
 import com.edrees.newsapp.ui.home.DetailsCallback
 import com.edrees.newsapp.ui.home.HomeAdapter
-import com.edrees.newsapp.ui.home.HomeFragmentDirections
 import com.edrees.newsapp.util.ConnectionUtils
 import com.edrees.newsapp.util.ConnectionUtils.recreateFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CategorizedNewsFragment : Fragment(), DetailsCallback {
     private lateinit var recyclerView: RecyclerView
     private val args: CategorizedNewsFragmentArgs by navArgs()
     private var _binding: FragmentCategorizedNewsBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: CategorizedNewsViewModel
+    private val viewModel by viewModel<CategorizedNewsViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,7 +39,6 @@ class CategorizedNewsFragment : Fragment(), DetailsCallback {
             showNoInternetConnectionLayout()
         } else {
             hideNoInternetConnectionLayout()
-            prepareViewModel()
             val adapter = HomeAdapter(this, requireContext())
             recyclerView = binding.categorizedNewsRecyclerView
             recyclerView.adapter = adapter
@@ -77,11 +67,6 @@ class CategorizedNewsFragment : Fragment(), DetailsCallback {
         val activity = requireActivity() as AppCompatActivity
         val toolbar = activity.findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = title
-    }
-
-    private fun prepareViewModel() {
-        val factory = ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
-        viewModel = ViewModelProvider(this, factory).get(CategorizedNewsViewModel::class.java)
     }
 
     override fun navigateToDetails(article: Article) {

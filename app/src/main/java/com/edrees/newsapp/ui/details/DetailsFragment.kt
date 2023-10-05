@@ -10,16 +10,12 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.edrees.newsapp.R
 import com.edrees.newsapp.databinding.FragmentDetailsBinding
-import com.edrees.newsapp.local.LocalSourceImpl
 import com.edrees.newsapp.model.Article
-import com.edrees.newsapp.network.APIClient
-import com.edrees.newsapp.repo.ArticleRepositoryImpl
-import com.edrees.newsapp.ui.ViewModelFactory
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter.ofPattern
 import java.time.format.TextStyle
@@ -29,7 +25,7 @@ class DetailsFragment : Fragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private val args: DetailsFragmentArgs by navArgs()
-    private lateinit var viewModel: DetailsViewModel
+    private val viewModel by viewModel<DetailsViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +36,6 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        prepareViewModel()
         val article = args.article
         bindAllViews(article)
         setFragmentTitle("Article Details")
@@ -50,11 +45,6 @@ class DetailsFragment : Fragment() {
         val activity = requireActivity() as AppCompatActivity
         val toolbar = activity.findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = title
-    }
-
-    private fun prepareViewModel(){
-        val factory = ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
-        viewModel = ViewModelProvider(this, factory).get(DetailsViewModel::class.java)
     }
 
     private fun bindAllViews(article: Article){

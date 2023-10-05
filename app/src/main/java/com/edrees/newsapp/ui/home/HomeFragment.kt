@@ -1,29 +1,17 @@
 package com.edrees.newsapp.ui.home
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.edrees.newsapp.MainActivity
 import com.edrees.newsapp.databinding.FragmentHomeBinding
-import com.edrees.newsapp.local.LocalSourceImpl
 import com.edrees.newsapp.model.Article
-import com.edrees.newsapp.network.APIClient
-import com.edrees.newsapp.repo.ArticleRepositoryImpl
-import com.edrees.newsapp.ui.ViewModelFactory
-import com.edrees.newsapp.ui.search.SecondaryAdapter
 import com.edrees.newsapp.util.ConnectionUtils.checkInternetConnection
 import com.edrees.newsapp.util.ConnectionUtils.recreateFragment
-import com.edrees.newsapp.util.Constants
-import com.google.android.material.textfield.TextInputEditText
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), DetailsCallback {
 
@@ -32,7 +20,7 @@ class HomeFragment : Fragment(), DetailsCallback {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel by viewModel<HomeViewModel>()
     private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
@@ -50,9 +38,8 @@ class HomeFragment : Fragment(), DetailsCallback {
             showNoInternetConnectionLayout()
         } else {
             hideNoInternetConnectionLayout()
-            prepareViewModel()
             recyclerView = binding.homeRecyclerView
-            val adapter = HomeAdapter(this, context!!)
+            val adapter = HomeAdapter(this, requireContext())
             recyclerView.adapter = adapter
             viewModel.listOfArticle.observe(viewLifecycleOwner){
                 adapter.setData(it)
@@ -73,10 +60,6 @@ class HomeFragment : Fragment(), DetailsCallback {
         binding.retryButton.setOnClickListener{
             this.recreateFragment()
         }
-    }
-    private fun prepareViewModel() {
-        val factory = ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
-        viewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
     }
 
     override fun onDestroyView() {

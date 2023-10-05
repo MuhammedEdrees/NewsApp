@@ -14,19 +14,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edrees.newsapp.databinding.FragmentSearchBinding
 import com.edrees.newsapp.local.LocalSourceImpl
 import com.edrees.newsapp.model.Article
-import com.edrees.newsapp.network.APIClient
+import com.edrees.newsapp.network.ArticleRemoteDataSourceImpl
 import com.edrees.newsapp.repo.ArticleRepositoryImpl
-import com.edrees.newsapp.ui.ViewModelFactory
 import com.edrees.newsapp.ui.home.DetailsCallback
 import com.edrees.newsapp.util.ConnectionUtils.checkInternetConnection
 import com.edrees.newsapp.util.ConnectionUtils.recreateFragment
 import com.google.android.material.textfield.TextInputEditText
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment(), DetailsCallback {
 
     private var _binding: FragmentSearchBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: SearchViewModel
+    private val viewModel by viewModel<SearchViewModel>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var layoutManager: LinearLayoutManager
     private lateinit var searchEditText: TextInputEditText
@@ -48,7 +48,6 @@ class SearchFragment : Fragment(), DetailsCallback {
         if (!connected) {
             showNoInternetConnectionLayout()
         } else {
-            prepareViewModel()
             hideNoInternetConnectionLayout()
             adapter = SecondaryAdapter(this)
             searchEditText = binding.searchTextInputLayout.editText as TextInputEditText
@@ -95,13 +94,6 @@ class SearchFragment : Fragment(), DetailsCallback {
             this.recreateFragment()
         }
     }
-
-    private fun prepareViewModel() {
-        val factory =
-            ViewModelFactory(ArticleRepositoryImpl(APIClient, LocalSourceImpl(requireContext())))
-        viewModel = ViewModelProvider(this, factory).get(SearchViewModel::class.java)
-    }
-
     override fun onDestroyView() {
         if (connected) {
             adapter.setData(listOf())
